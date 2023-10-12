@@ -21,6 +21,16 @@ app.get('/', (req, res) => {
     res.render('index');
   });
 
+app.get('/about-us', (req, res) => {
+    // Render the EJS template, passing data as an object
+    res.render('aboutus');
+  });
+
+app.get('/contact', (req, res) => {
+    // Render the EJS template, passing data as an object
+    res.render('contact');
+  });
+
 connectDatabase();
 const server = app.listen(process.env.PORT, () => {
     console.log(`Server started on PORT: ${process.env.PORT} in DEV mode.`)
