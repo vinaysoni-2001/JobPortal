@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Your Website Title</title>
+    <meta name="description" content="Your website description">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+    <!-- section contains navigation bar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/about-us">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/contact">Contact Us</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+    </header>
+
+    <!-- section contains description  -->
+        <div class="card text-center">
+            <!-- <div class="card-header">
+              Hiring Alert!
+            </div> -->
+            <div class="card-body">
+              <h4 class="card-title">We are hiring!</h4>
+              <p class="card-text">JOIN OUR TEAM.</p>
+              <a href="#" id="btn" class="btn btn-primary">Apply Now</a>
+            </div>
+          </div>
+
+    <!-- section contains job details -->
+    <div class="card-deck">
+    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+          <h5 class="card-title">Info card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>
+    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+          <h5 class="card-title">Info card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>
+    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+          <h5 class="card-title">Info card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>
+    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+          <h5 class="card-title">Info card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div><div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class.card-body>
+          <h5 class="card-title">Info card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>
+    </div>
+
+    <!-- form section for apply button -->
+    <div class="row justify-content-center">
+    <form id="applyForm">
+      <div class="form-group">
+        <label for="exampleInputName">Full Name</label>
+        <input type="input" class="form-control" id="exampleInputName" placeholder="Full Name">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPhone">Phone</label>
+        <input type="phone" class="form-control" id="exampleInputPhone" placeholder="Phone">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormResume">Upload Resume here</label>
+        <input type="file" class="form-control-file" id="exampleFormResume">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+    <footer>
+        <p>&copy; 2023 Your Website. All rights reserved.</p>
+    </footer>
+</body>
+
+<!-- javascript for the project, will move to different file once everything works -->
+<script>
+  const btn = document.getElementById('btn');
+
+btn.addEventListener('click', () => {
+  const form = document.getElementById('applyForm');
+
+  if (form.style.display === 'none') {
+    // this SHOWS the form
+    form.style.display = 'block';
+  } else {
+    // this HIDES the form
+    form.style.display = 'none';
+  }
+});
+</script>
+</html>

@@ -1,0 +1,105 @@
+
+/* Apply general styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Style the navigation bar */
+  nav {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Align items to the left and right */
+    align-items: center; /* Center items vertically */
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; /* Remove default margin */
+  }
+  
+  nav li {
+    display: inline;
+    margin-left: 10px;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  /* Style the hero section */
+  .hero-section {
+    background-size: cover;
+    background-position: center;
+    height: 300px; /* Adjust the height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-section button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .hero-section button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Add styles for your logo */
+  .logo {
+    padding: 0 10px; /* Adjust padding as needed */
+  }
+    
+
+
+/* Style the job cards section */
+.job-cards-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Start from the left */
+    padding: 20px;
+  }
+  
+  .job-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: calc(25% - 20px); /* Adjust the width for 4 cards per row */
+    margin: 10px;
+    box-sizing: border-box; /* Ensure padding doesn't affect the width */
+  }
+  
+  .job-card h3 {
+    margin: 0 0 10px;
+  }
+  
+  /* Rest of the styles remain the same */
+  
+
+
+  .about-us-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px; /* Add bottom margin to create space */
+  }
+  
+  /* Style the footer */
+  footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    
+    bottom: 0;
+  }
+  
