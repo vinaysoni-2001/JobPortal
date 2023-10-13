@@ -7,6 +7,15 @@ body {
   }
   
   /* Style the navigation bar */
+  /* nav {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+  } */
+  
   nav {
     background-color: #333;
     color: white;
@@ -14,8 +23,14 @@ body {
     display: flex;
     justify-content: space-between; /* Align items to the left and right */
     align-items: center; /* Center items vertically */
+    position: fixed;
+    top: 0;
+    width: 100%;
   }
-  
+
+  nav li:last-child {
+    margin-right: 20px; /* Adjust margin for the last navigation item (Contact Us) */
+  }
   nav ul {
     list-style-type: none;
     padding: 0;
@@ -30,6 +45,14 @@ body {
   nav a {
     color: white;
     text-decoration: none;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  nav .logo {
+    margin-left: 10px; /* Adjust margin as needed */
   }
   
   /* Style the hero section */
@@ -99,7 +122,6 @@ body {
     text-align: center;
     padding: 10px;
     width: 100%;
-    
     bottom: 0;
   }
   

@@ -16,31 +16,12 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 // app.use(express.static(path.join(__dirname, 'views')));
 
-app.get('/', (req, res) => {
-    // Render the EJS template, passing data as an object
-    // res.render('index');
-    const jobs = [
-      { title: 'Job Title 1', description: 'Job Description 1' },
-      { title: 'Job Title 2', description: 'Job Description 2' },
-      { title: 'Job Title 1', description: 'Job Description 1' },
-      { title: 'Job Title 2', description: 'Job Description 2' },
-      { title: 'Job Title 1', description: 'Job Description 1' },
-      { title: 'Job Title 2', description: 'Job Description 2' },
-      // Add more job data as needed
-    ];
+const {home,about,contact} = require("./controllers/Main")
 
-    res.render('index', { jobs: jobs }); 
-  });
+app.get('/',home);
 
-app.get('/about-us', (req, res) => {
-    // Render the EJS template, passing data as an object
-    res.render('aboutus');
-  });
-
-app.get('/contact', (req, res) => {
-    // Render the EJS template, passing data as an object
-    res.render('contact');
-  });
+app.get('/about-us', about);
+app.get('/contact',contact);
 
 connectDatabase();
 const server = app.listen(process.env.PORT, () => {
