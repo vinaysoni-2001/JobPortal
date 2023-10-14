@@ -1,45 +1,138 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Your Website</title>
   <link rel="stylesheet" type="text/css" href="/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+
 </head>
 <body>
 
-    <!-- Include the navbar -->
-    <%- include("navbar"); %>
-      
+  <!-- Include the navbar -->
+  <%- include("navbar"); %>
 
-<!-- Hero Section -->
-<section class="hero-section" style="background-image: url('back.jpg');">
-  <button>Apply Now</button>
-</section>
 
-<!-- Job Cards Section -->
-<section class="job-cards-section">
-  <!-- Loop through your job data and generate cards dynamically -->
-  <% for (let job of jobs) { %>
-    <div class="job-card">
-      <h3><%= job.title %></h3>
-      <p><%= job.description %></p>
-      <!-- Add more job details as needed -->
+    <!-- Hero Section -->
+    <section class="hero-section firstdiv" style="background-image: url('back.jpg');">
+      <!-- <button>Apply Now</button> -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+        Apply Now!
+      </button>
+    </section>
+
+    <!-- Job Cards Section -->
+    <section class="job-cards-section container">
+      <!-- Loop through your job data and generate cards dynamically -->
+      <% for (let job of jobs) { %>
+          <div class="card job-card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><%= job.jobTitle %></h5>
+              <p class="card-text"><%= job.jobDesc %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><strong>Location: </strong><%= job.jobLocation %></li>
+              <li class="list-group-item"><strong>Experience: </strong><%= job.Experience %></li>
+            </ul>
+          <!-- Add more job details as needed -->
+        </div>
+        <% } %>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-us-section">
+      <h2 id="about">About Us</h2>
+      <!-- <p>Your website's description goes here.</p> -->
+      <p>
+        Welcome to our website! We are dedicated to providing the best services and solutions for our clients.
+        Our team of professionals works tirelessly to achieve excellence in every aspect of what we do.
+        Learn more about us and discover how we can help you succeed.
+      </p>
+    </section>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Your Company Name</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="applyForm" method="POST">
+              <div class="form-group">
+                <label for="Name">Full Name</label>
+                <input type="input" class="form-control" id="Name" name="Name" placeholder="Full Name" required>
+              </div>
+              <div class="form-group">
+                <label for="Email1">Email address</label>
+                <input type="email" class="form-control" id="Email1" name="Email1" aria-describedby="emailHelp"
+                  placeholder="Enter email" required>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                  else.</small>
+              </div>
+              <div class="form-group">
+                <label for="Phone">Phone</label>
+                <input type="number" class="form-control" id="Phone" name="Phone" placeholder="Phone" required>
+              </div>
+              <div class="form-group">
+                <label for="Age">Age</label>
+                <input type="number" class="form-control" id="Age" name="Age" placeholder="Age" required>
+              </div>
+              <div class="form-group">
+                <label for="City">City</label>
+                <input type="text" class="form-control" id="City" name="City" placeholder="City" required>
+              </div>
+              <div class="form-group">
+                <label for="Resume">Upload Resume here</label>
+                <input type="file" class="form-control-file" name="Resume" id="Resume" required>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" id="saveUser">Save Application</button>
+          </div>
+        </div>
+      </div>
     </div>
-  <% } %>
-</section>
 
-<!-- About Us Section -->
-<section class="about-us-section">
-  <h2>About Us</h2>
-  <!-- <p>Your website's description goes here.</p> -->
-  <p>
-    Welcome to our website! We are dedicated to providing the best services and solutions for our clients.
-    Our team of professionals works tirelessly to achieve excellence in every aspect of what we do.
-    Learn more about us and discover how we can help you succeed.
-  </p>
-</section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+    <!-- code for post ajax call to save user application form -->
+    <script>
+      // code for ajax call to save data
+      const saveButton = document.getElementById("saveUser");
+      saveButton.addEventListener("click", function () {
+        const data = {
+          "name": $("#Name").val(),
+          "age": $("#Age").val(),
+          "email": $("#Email1").val(),
+          // "resume":$("#exampleFormResume").val(),
+          "city": $("#City").val(),
+          "number": $("#Phone").val()
+        };
+        $.ajax({
+          url: "/user",
+          type: "POST",
+          data: JSON.stringify(data),
+          contentType: "application/json",
+          success: function (response) {
+            $("#myModal").modal("hide");
+            document.getElementById("applyForm").reset();
+            alert("Application Submitted Successfully");
+            // resultDiv.html("AJAX response: " + JSON.stringify(response));
+          },
+          error: function (error) {
+            resultDiv.html("AJAX request failed.");
+          }
+        });
+      })
+    </script>
 
-<!-- Include the footer -->
-<%- include("footer"); %>
+    <!-- Include the footer -->
+    <%- include("footer"); %>
 
 </body>
+
 </html>

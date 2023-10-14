@@ -1,58 +1,84 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Your Website Title</title>
-    <meta name="description" content="Your website description">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <title>Your Website Title</title>
+  <meta name="description" content="Your website description">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
 </head>
+
 <body>
-    <!-- section contains navigation bar -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="/">Home </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/about-us">About Us </a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="/contact">Contact Us <span class="sr-only">(current)</span></a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-    </header>
+  <!-- section contains navigation bar -->
+  <!-- Include the navbar -->
+  <%- include("navbar"); %>
     <!-- form section for contact us page -->
+    <section class="firstdiv">
     <div class="row justify-content-center">
-    <form id="applyForm">
+      <form id="contactForm" method="POST">
         <div class="form-group">
-          <label for="exampleInputName">Full Name</label>
-          <input type="input" class="form-control" id="exampleInputName" placeholder="Full Name">
+          <label for="ContactName">Full Name</label>
+          <input type="input" class="form-control" name="ContactName" id="ContactName" placeholder="Full Name" required>
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          <label for="ContactEmail1">Email address</label>
+          <input type="email" class="form-control" name="ContactEmail1" id="ContactEmail1" aria-describedby="emailHelp"
+            placeholder="Enter email" required>
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+            else.</small>
         </div>
         <div class="form-group">
-          <label for="exampleInputPhone">Phone</label>
-          <input type="phone" class="form-control" id="exampleInputPhone" placeholder="Phone">
+          <label for="ContactPhone">Phone</label>
+          <input type="number" name="ContactPhone" class="form-control" id="ContactPhone" placeholder="Phone" required>
         </div>
         <div class="form-group">
-          <label for="exampleFormResume">Upload Resume here</label>
-          <input type="file" class="form-control-file" id="exampleFormResume">
+          <label for="ContactCity">City</label>
+          <input type="text" name="ContactCity" class="form-control" id="ContactCity" placeholder="City" required>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+          <label for="ContactQuery">Query</label>
+          <input type="text" name="ContactQuery" class="form-control" id="ContactQuery" placeholder="Query" required>
+        </div>
+        <button type="button" class="btn btn-primary" id="saveContactUser">Submit Query</button>
       </form>
     </div>
-  
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+  <!-- code for post ajax call to save user application form -->
+  <script>
+    // code for ajax call to save data
+    const saveButton = document.getElementById("saveContactUser");
+    saveButton.addEventListener("click", function () {
+      const data = {
+        "name": $("#ContactName").val(),
+        "email": $("#ContactEmail1").val(),
+        "query": $("#ContactQuery").val(),
+        "city": $("#ContactCity").val(),
+        "number": $("#ContactPhone").val()
+      };
+      $.ajax({
+        url: "/contact",
+        type: "POST",
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        success: function (response) {
+          document.getElementById("contactForm").reset();
+          alert("Application Submitted Successfully");
+          // resultDiv.html("AJAX response: " + JSON.stringify(response));
+        },
+        error: function (error) {
+          resultDiv.html("AJAX request failed.");
+        }
+      });
+    })
+  </script>
 
     <footer>
-        <p>&copy; 2023 Your Website. All rights reserved.</p>
+      <p>&copy; 2023 Your Website. All rights reserved.</p>
     </footer>
 </body>
+
 </html>

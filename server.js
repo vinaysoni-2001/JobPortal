@@ -16,12 +16,15 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 // app.use(express.static(path.join(__dirname, 'views')));
 
-const {home,about,contact} = require("./controllers/Main")
+const {home,about,contact,createUser,createContact} = require("./controllers/Main")
 
 app.get('/',home);
 
 app.get('/about-us', about);
 app.get('/contact',contact);
+app.post('/user',createUser);
+app.post('/contact',createContact);
+
 
 connectDatabase();
 const server = app.listen(process.env.PORT, () => {

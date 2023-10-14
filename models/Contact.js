@@ -2,23 +2,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const ContactSchema = new Schema({
   name: {
     type: String,
-    required: true,
-  },
-  age: {
-    type: Number,
     required: true,
   },
   email: {
     type: String,
     required: true,
   },
-  // resume: {
-  //   type: String,
-  //   required: true
-  // },
   city:{
     type:String,
     required: true
@@ -27,11 +19,15 @@ const UserSchema = new Schema({
     type:Number,
     required: true
   },
+  query:{
+    type:String,
+    required: true
+  },
 },  //this will auto update the timestamp when we do inserting or updating documents of this type schema
 { timestamps: true });
 
-const User = mongoose.model('User', UserSchema);
-module.exports = User;
+const Contact = mongoose.model('Contact', ContactSchema);
+module.exports = Contact;
 
 /*at first we make a schema that define structure and then created model based on that schema in 33 by 
   passing 2args 1st is singular name of collection then the schema that define structure for that object */
