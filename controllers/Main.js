@@ -28,24 +28,23 @@ exports.contact = async (req, res) => {
 }
 
 
-// test code
+
 //submitting data routes
 exports.createUser = async (req, res) => {
   console.log("POST req made on" + req.url);
   console.log("Form submitted to server");
-
-
-  /*Note: when you are passing form obj directly to collection using model you
-          have to give same name in form of that data that is to be passed in database 
-          and that name is declared inside schema*/
   const user = new User(req.body); //passing object of form data directly to collection
-  user.save() //then saving this to database and this return promise
-    .then(result => {
-      res.redirect('/');//is success save this will redirect to home page
-    })
-    .catch(err => { //if data not saved error showed
-      console.log(err);
-    });
+  try{
+    console.log("----request body----create user",req.body);
+    const user = new User(req.body);
+    await user.save();
+    res.redirect('/');
+
+  }catch(error){
+    console.log("-----error in creating user",error);
+    res.json({status:false, message:error.message});
+
+  }
 }
 
 exports.createContact = async (req, res) => {
@@ -56,14 +55,12 @@ exports.createContact = async (req, res) => {
   /*Note: when you are passing form obj directly to collection using model you
           have to give same name in form of that data that is to be passed in database 
           and that name is declared inside schema*/
-  const contact = new Contact(req.body); //passing object of form data directly to collection
-  await contact.save() //then saving this to database and this return promise
-    .then(result => {
-      console.log(contact);
-      res.redirect('/');//is success save this will redirect to home page
-    })
-    .catch(err => { //if data not saved error showed
-      console.log(err);
-    });
+  try{
+    const contact = new Contact(req.body); //passing object of form data directly to collection
+    await contact.save();
+  }catch(error){
+    console.log("------error-------",error);
+    res.json({status:false,message:error.message});
+  }
 
 }

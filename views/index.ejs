@@ -17,30 +17,45 @@
     <!-- Hero Section -->
     <section class="hero-section firstdiv" style="background-image: url('back.jpg');">
       <!-- <button>Apply Now</button> -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+      <button id="applyNow"type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
         Apply Now!
       </button>
     </section>
 
     <!-- Job Cards Section -->
-    <section class="job-cards-section">
       <!-- Loop through your job data and generate cards dynamically -->
-      <% for (let job of jobs) { %>
+      <% if (jobs.length > 0){ %>
+        <section class="job-cards-section">
+          <div class="container">
+            <div class="row">
+        <% for (let job of jobs) { %>
+            <div class="card job-card col-12 col-hm-6 col-md-4 col-lg-3 md-4" >
+              <div class="card job-card">
+              <div class="card-body">
+                <h5 class="card-title"><%= job.jobTitle %></h5>
+                <p class="card-text"><%= job.jobDesc %></p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Location: </strong><%= job.jobLocation %></li>
+                <li class="list-group-item"><strong>Experience: </strong><%= job.Experience %></li>
+                <li class="list-group-item"><strong>Other Info: </strong><%= job.other %></li>
+              </ul>
+            <!-- Add more job details as needed -->
+          </div>
+          </div>
+          <% } %>
+        </div>
+        </div>
+        </section>
+        <% } else { %>
+          <section class="job-cards-section container justify-content-center">
           <div class="card job-card" style="width: 18rem;">
             <div class="card-body">
-              <h5 class="card-title"><%= job.jobTitle %></h5>
-              <p class="card-text"><%= job.jobDesc %></p>
-              
+              <h5 class="card-title">Currently No Openings</h5>
             </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><strong>Location: </strong><%= job.jobLocation %></li>
-              <li class="list-group-item"><strong>Experience: </strong><%= job.Experience %></li>
-            </ul>
-            
-          <!-- Add more job details as needed -->
-        </div>
-        <% } %>
-    </section>
+          </div>
+        </section>
+         <% } %> 
 
     <!-- About Us Section -->
     <section class="about-us-section">
@@ -66,6 +81,7 @@
               <div class="form-group">
                 <label for="Name">Full Name</label>
                 <input type="input" class="form-control" id="Name" name="Name" placeholder="Full Name" required>
+                <span class="error-message" id="Name-error"></span>
               </div>
               <div class="form-group">
                 <label for="Email1">Email address</label>
@@ -73,22 +89,29 @@
                   placeholder="Enter email" required>
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                   else.</small>
+                  <span class="error-message" id="Email1-error"></span>
               </div>
               <div class="form-group">
                 <label for="Phone">Phone</label>
                 <input type="number" class="form-control" id="Phone" name="Phone" placeholder="Phone" required>
+                <span class="error-message" id="Phone-error"></span>
               </div>
               <div class="form-group">
                 <label for="Age">Age</label>
                 <input type="number" class="form-control" id="Age" name="Age" placeholder="Age" required>
+                <span class="error-message" id="Age-error"></span>
               </div>
               <div class="form-group">
                 <label for="City">City</label>
                 <input type="text" class="form-control" id="City" name="City" placeholder="City" required>
+                <span class="error-message" id="City-error"></span>
               </div>
               <div class="form-group">
                 <label for="Resume">Upload Resume here</label>
                 <input type="file" class="form-control-file" name="Resume" id="Resume" required>
+                <span class="error-message" id="Resume-error"></span>
+              </div>
+              <div id="errorApplyForm">
               </div>
             </form>
           </div>
@@ -107,7 +130,24 @@
       // code for ajax call to save data
       const saveButton = document.getElementById("saveUser");
       saveButton.addEventListener("click", function () {
-        const data = {
+
+        // Reset error messages and styles
+    $('.error-message').text('');
+    $('input').removeClass('error');
+        // Check each input field for empty values
+    var valid = true;
+    
+    $('input').each(function() {
+      if ($(this).val() === '') {
+        valid = false;
+        $(this).addClass('error');
+        var fieldName = $(this).attr('name');
+        $('#' + fieldName + '-error').html('<span style="color:red;font-size:75%;font-style:italic;">This Field is required.</span>');
+      }
+    })
+    
+    if (valid) {
+      const data = {
           "name": $("#Name").val(),
           "age": $("#Age").val(),
           "email": $("#Email1").val(),
@@ -124,13 +164,22 @@
             $("#myModal").modal("hide");
             document.getElementById("applyForm").reset();
             alert("Application Submitted Successfully");
-            // resultDiv.html("AJAX response: " + JSON.stringify(response));
           },
           error: function (error) {
             resultDiv.html("AJAX request failed.");
           }
         });
-      })
+    } else {
+      // Some fields are empty
+      alert("Please fill in all the required fields.");
+    }
+});
+
+const applyButton = document.getElementById("applyNow");
+applyButton.addEventListener("click", function () { 
+  $('.error-message').text('');
+  document.getElementById("applyForm").reset();
+  })     
     </script>
 
     <!-- Include the footer -->

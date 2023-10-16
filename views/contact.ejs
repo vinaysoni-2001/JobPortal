@@ -71,23 +71,28 @@
               <div class="form-group">
                 <label for="ContactName">Full Name</label>
                 <input type="input" class="form-control" name="ContactName" id="ContactName" placeholder="Full Name" required>
+                <span class="error-message-contact" id="ContactName-error"></span>
               </div>
               <div class="form-group">
                 <label for="ContactEmail1">Email address</label>
                 <input type="email" class="form-control" name="ContactEmail1" id="ContactEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <span class="error-message-contact" id="ContactEmail1-error"></span>
               </div>
               <div class="form-group">
                 <label for="ContactPhone">Phone</label>
                 <input type="number" name="ContactPhone" class="form-control" id="ContactPhone" placeholder="Phone" required>
+                <span class="error-message-contact" id="ContactPhone-error"></span>
               </div>
               <div class="form-group">
                 <label for="ContactCity">City</label>
                 <input type="text" name="ContactCity" class="form-control" id="ContactCity" placeholder="City" required>
+                <span class="error-message-contact" id="ContactCity-error"></span>
               </div>
               <div class="form-group">
                 <label for="ContactQuery">Query</label>
                 <input type="text" name="ContactQuery" class="form-control" id="ContactQuery" placeholder="Query" required>
+                <span class="error-message-contact" id="ContactQuery-error"></span>
               </div>
               <button type="button" class="btn btn-primary" id="saveContactUser">Submit Query</button>
             </form>
@@ -103,6 +108,23 @@
     // code for ajax call to save data
     const saveButton = document.getElementById("saveContactUser");
     saveButton.addEventListener("click", function () {
+
+        // Reset error messages and styles
+        $('.error-message-contact').text('');
+    $('input').removeClass('error');
+        // Check each input field for empty values
+    var valid = true;
+    
+    $('input').each(function() {
+      if ($(this).val() === '') {
+        valid = false;
+        $(this).addClass('error');
+        var fieldName = $(this).attr('name');
+        $('#' + fieldName + '-error').html('<span style="color:red;font-size:75%;font-style:italic;">This Field is required.</span>');
+      }
+    })
+
+    if (valid) {
       const data = {
         "name": $("#ContactName").val(),
         "email": $("#ContactEmail1").val(),
@@ -124,6 +146,10 @@
           resultDiv.html("AJAX request failed.");
         }
       });
+    }else{
+      // Some fields are empty
+      alert("Please fill in all the required fields.");
+    }
     })
   </script>
 

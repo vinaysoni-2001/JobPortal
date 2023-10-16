@@ -19,6 +19,10 @@ const JobSchema = new Schema({
     type: String,
     required: true,
   },
+  other: {
+    type: String,
+    required: true,
+  },
 },  //this will auto update the timestamp when we do inserting or updating documents of this type schema
 { timestamps: true });
 

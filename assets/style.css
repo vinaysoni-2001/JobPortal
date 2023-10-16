@@ -98,7 +98,7 @@ body {
   .job-card {
     border: 1px solid #ccc;
     padding: 8px;
-    width: calc(25% - 20px); /* Adjust the width for 4 cards per row */
+    /* width: calc(25% - 20px); Adjust the width for 4 cards per row */
     margin: 10px;
     box-sizing: border-box; /* Ensure padding doesn't affect the width */
   }
