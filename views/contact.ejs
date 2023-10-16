@@ -14,7 +14,23 @@
   <!-- Include the navbar -->
   <%- include("navbar"); %>
     <!-- form section for contact us page -->
+
     <section class="firstdiv">
+      <!-- <p>Your website's description goes here.</p> -->
+      <p>
+        Welcome to our website! We are dedicated to providing the best services and solutions for our clients.
+        Our team of professionals works tirelessly to achieve excellence in every aspect of what we do.
+        Learn more about us and discover how we can help you succeed.
+      </p>
+      <p>
+        Welcome to our website! We are dedicated to providing the best services and solutions for our clients.
+        Our team of professionals works tirelessly to achieve excellence in every aspect of what we do.
+        Learn more about us and discover how we can help you succeed.
+      </p>
+    </section>
+
+
+    <!-- <section class="firstdiv">
     <div class="row justify-content-center">
       <form id="contactForm" method="POST">
         <div class="form-group">
@@ -43,8 +59,42 @@
         <button type="button" class="btn btn-primary" id="saveContactUser">Submit Query</button>
       </form>
     </div>
-  </section>
+  </section> -->
 
+  <section class="firstdiv">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <form id="contactForm" method="POST">
+              <div class="form-group">
+                <label for="ContactName">Full Name</label>
+                <input type="input" class="form-control" name="ContactName" id="ContactName" placeholder="Full Name" required>
+              </div>
+              <div class="form-group">
+                <label for="ContactEmail1">Email address</label>
+                <input type="email" class="form-control" name="ContactEmail1" id="ContactEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group">
+                <label for="ContactPhone">Phone</label>
+                <input type="number" name="ContactPhone" class="form-control" id="ContactPhone" placeholder="Phone" required>
+              </div>
+              <div class="form-group">
+                <label for="ContactCity">City</label>
+                <input type="text" name="ContactCity" class="form-control" id="ContactCity" placeholder="City" required>
+              </div>
+              <div class="form-group">
+                <label for="ContactQuery">Query</label>
+                <input type="text" name="ContactQuery" class="form-control" id="ContactQuery" placeholder="Query" required>
+              </div>
+              <button type="button" class="btn btn-primary" id="saveContactUser">Submit Query</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
   <!-- code for post ajax call to save user application form -->

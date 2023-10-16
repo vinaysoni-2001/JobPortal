@@ -22,18 +22,20 @@
     </section>
 
     <!-- Job Cards Section -->
-    <section class="job-cards-section container">
+    <section class="job-cards-section">
       <!-- Loop through your job data and generate cards dynamically -->
       <% for (let job of jobs) { %>
           <div class="card job-card" style="width: 18rem;">
             <div class="card-body">
               <h5 class="card-title"><%= job.jobTitle %></h5>
               <p class="card-text"><%= job.jobDesc %></p>
+              
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><strong>Location: </strong><%= job.jobLocation %></li>
               <li class="list-group-item"><strong>Experience: </strong><%= job.Experience %></li>
             </ul>
+            
           <!-- Add more job details as needed -->
         </div>
         <% } %>
