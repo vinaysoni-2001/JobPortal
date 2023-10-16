@@ -1,14 +1,8 @@
 {
   "name": "jobportal",
   "version": "1.0.0",
-  "description": "new project",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "vinay",
-  "license": "ISC",
+  "description": "",
+  "main": "database.js",
   "dependencies": {
     "body-parser": "^1.20.1",
     "dotenv": "^16.0.3",
@@ -17,5 +11,12 @@
     "mongodb": "^6.1.0",
     "mongoose": "^6.12.1",
     "nodemon": "^2.0.22"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
