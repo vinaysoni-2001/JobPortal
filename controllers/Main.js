@@ -38,7 +38,7 @@ exports.createUser = async (req, res) => {
     console.log("----request body----create user",req.body);
     const user = new User(req.body);
     await user.save();
-    res.redirect('/');
+    res.json({status:true,message:"success"});
 
   }catch(error){
     console.log("-----error in creating user",error);
@@ -58,7 +58,7 @@ exports.createContact = async (req, res) => {
   try{
     const contact = new Contact(req.body); //passing object of form data directly to collection
     await contact.save();
-    console.log("🚀 ~ file: Main.js:61 ~ exports.createContact= ~ contact:", contact)
+    res.json({status:true,message:"success"});
   }catch(error){
     console.log("------error-------",error);
     res.json({status:false,message:error.message});

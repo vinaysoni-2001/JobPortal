@@ -113,6 +113,7 @@
         // Reset error messages and styles
         $('.error-message-contact').text('');
     $('input').removeClass('error');
+    $('textarea').removeClass('error');
         // Check each input field for empty values
     var valid = true;
     
@@ -124,6 +125,12 @@
         $('#' + fieldName + '-error').html('<span style="color:red;font-size:75%;font-style:italic;">This Field is required.</span>');
       }
     })
+    if($("textarea").val()===''){
+      valid=false;
+      $("textarea").addClass("error");
+      var fieldName = $("textarea").attr('name');
+        $('#' + fieldName + '-error').html('<span style="color:red;font-size:75%;font-style:italic;">This Field is required.</span>');
+    }
 
     if (valid) {
       const data = {
@@ -141,10 +148,9 @@
         success: function (response) {
           document.getElementById("contactForm").reset();
           alert("Application Submitted Successfully");
-          // resultDiv.html("AJAX response: " + JSON.stringify(response));
         },
         error: function (error) {
-          resultDiv.html("AJAX request failed.");
+          alert("Data not saved ,Please try after some time");
         }
       });
     }else{
