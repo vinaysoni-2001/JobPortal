@@ -58,6 +58,7 @@ exports.createContact = async (req, res) => {
   try{
     const contact = new Contact(req.body); //passing object of form data directly to collection
     await contact.save();
+    console.log("🚀 ~ file: Main.js:61 ~ exports.createContact= ~ contact:", contact)
   }catch(error){
     console.log("------error-------",error);
     res.json({status:false,message:error.message});
