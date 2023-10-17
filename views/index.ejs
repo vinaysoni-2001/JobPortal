@@ -29,8 +29,8 @@
           <div class="container">
             <div class="row">
         <% for (let job of jobs) { %>
-            <div class="card job-card col-12 col-hm-6 col-md-4 col-lg-3 md-4" >
-              <div class="card job-card">
+          <div class="col-12 col-hm-6 col-md-4 col-lg-3 md-4">
+              <div class="card job-card d-flex flex-column">
               <div class="card-body">
                 <h5 class="card-title"><%= job.jobTitle %></h5>
                 <p class="card-text"><%= job.jobDesc %></p>
@@ -42,7 +42,7 @@
               </ul>
             <!-- Add more job details as needed -->
           </div>
-          </div>
+        </div>
           <% } %>
         </div>
         </div>
