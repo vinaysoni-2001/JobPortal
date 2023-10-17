@@ -107,6 +107,19 @@
   <!-- code for post ajax call to save user application form -->
   <script>
     // code for ajax call to save data
+    //code for valid email and phone number
+        function IsEmail(email) {
+            var regex =
+              /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!regex.test(email)) {
+              return false;
+            }
+            else {
+              return true;
+            }
+          }
+
+
     const saveButton = document.getElementById("saveContactUser");
     saveButton.addEventListener("click", function () {
 
@@ -123,6 +136,27 @@
         $(this).addClass('error');
         var fieldName = $(this).attr('name');
         $('#' + fieldName + '-error').html('<span style="color:red;font-size:75%;font-style:italic;">This Field is required.</span>');
+      }else if($(this).attr('name') === 'ContactEmail1'){
+        valid = false;
+        $(this).addClass('error');
+        var fieldName = $(this).attr('name');
+        var emailValue=$(this).val();
+        if(IsEmail(emailValue)){
+          valid=true;
+        }else{
+        $('#' + fieldName + '-error').html('<span style="color:red;font-size:75%;font-style:italic;">Please enter correct email.</span>');
+        }
+      }else if($(this).attr('name') === 'ContactPhone'){
+        valid = false;
+        $(this).addClass('error');
+        var fieldName = $(this).attr('name');
+        var phoneValue=$(this).val();
+        phoneValue=phoneValue.toString();
+        if(phoneValue.length==10){
+          valid=true;
+        }else{
+        $('#' + fieldName + '-error').html('<span style="color:red;font-size:75%;font-style:italic;">Phone must have 10 digits.</span>');
+        }
       }
     })
     if($("textarea").val()===''){
