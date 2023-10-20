@@ -77,7 +77,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form id="applyForm" method="POST">
+            <form id="applyForm" method="POST" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="Name">Full Name</label>
                 <input type="input" class="form-control" id="Name" name="Name" placeholder="Full Name" required>
@@ -142,7 +142,7 @@
       // code for ajax call to save data
       const saveButton = document.getElementById("saveUser");
       saveButton.addEventListener("click", function () {
-
+console.log("------------------button clicked");
         // Reset error messages and styles
     $('.error-message').text('');
     $('input').removeClass('error');
@@ -180,19 +180,40 @@
     })
     
     if (valid) {
+
+      console.log("--------------valid data")
       const data = {
           "name": $("#Name").val(),
           "age": $("#Age").val(),
           "email": $("#Email1").val(),
-          // "resume":$("#exampleFormResume").val(),
           "city": $("#City").val(),
           "number": $("#Phone").val()
         };
+        console.log("--------data :",data)
+
+        var files = document.getElementById("Resume");
+        const formData = new FormData();
+        formData.append('name',data.name);
+        formData.append('age',data.age);
+        formData.append('email',data.email);
+        formData.append('city',data.city);
+        formData.append('number',data.number);
+        for(let i =0;i<files.files.length;i++)
+        {
+          formData.append('Resume',files.files[0]);
+        }
+        console.log("---------------form data")
+        console.log(Array.from(formData));
+        console.log("-----------------sending this data to save :",formData);
+
+
         $.ajax({
           url: "/user",
           type: "POST",
-          data: JSON.stringify(data),
-          contentType: "application/json",
+          dataType:'json',
+          contentType: false, // Set content type to false
+          processData: false,
+          data: formData,
           success: function (response) {
             $("#myModal").modal("hide");
             document.getElementById("applyForm").reset();
@@ -202,7 +223,8 @@
             alert("Data not saved ,Please try after some time");
           }
         });
-    } else {
+    }
+     else {
       // Some fields are empty
       alert("Please fill in all the required fields.");
     }
