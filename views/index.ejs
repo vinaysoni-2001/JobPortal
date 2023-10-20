@@ -106,7 +106,7 @@
                 <input type="text" class="form-control" id="City" name="City" placeholder="City" required>
                 <span class="error-message" id="City-error"></span>
               </div>
-              <div class="form-group">
+              <div class="form-group" style="margin-top: 15px;">
                 <label for="Resume">Upload Resume here</label>
                 <input type="file" class="form-control-file" name="Resume" id="Resume" required>
                 <span class="error-message" id="Resume-error"></span>
@@ -204,13 +204,13 @@ console.log("------------------button clicked");
         }
         console.log("---------------form data")
         console.log(Array.from(formData));
-        console.log("-----------------sending this data to save :",formData);
+        
+        console.log("-----------------formdata data type :",typeof(formData));
 
 
         $.ajax({
           url: "/user",
           type: "POST",
-          dataType:'json',
           contentType: false, // Set content type to false
           processData: false,
           data: formData,
