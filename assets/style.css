@@ -10,7 +10,7 @@ body {
   
   
   nav {
-    background-color: #333;
+    background-color: #000;
     color: white;
     padding: 10px;
     display: flex;
@@ -52,6 +52,7 @@ body {
   }
   .firstdiv{
     margin-top: 50px;
+    text-align: center;
 
   }
   /* Style the hero section */
@@ -124,7 +125,7 @@ body {
   
   /* Style the footer */
   footer {
-    background-color: #333;
+    background-color: #000;
     color: white;
     text-align: center;
     padding: 10px;
