@@ -80,3 +80,21 @@ exports.createContact = async (req, res) => {
   }
 
 }
+
+//search field searching based on job location
+// exports.searchJobs = async (req, res) => {
+//   try {
+//     const jobLocation=req.query;
+//     console.log(jobLocation,jobLocation["jobLocation"]);
+//     console.log("--------------req.query:",req.query)
+//     const data = await Jobs.find({"jobLocation":jobLocation["jobLocation"]}).sort({ createdAt: -1 });
+//       console.log("------------------data for search field--------------")
+//       console.log(data);
+//       res.render('index', { jobs: data, title: 'Home' });
+//        // res.render('index', { jobs: jobs });
+//     } catch (error) {
+//     console.log(error)
+//     res.json({status:false,message:error.message});
+//  } 
+
+// }

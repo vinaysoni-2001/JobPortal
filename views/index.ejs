@@ -16,17 +16,24 @@
 
     <!-- Hero Section -->
     <section class="hero-section firstdiv" style="background-image: url('back.jpg');">
-      <!-- <button>Apply Now</button> -->
-      <button id="applyNow"type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-        Apply Now!
-      </button>
+      <div class="search">
+        <label for="search">Search:</label>
+        <input type="text" id="search" name="search" onkeyup="searchByJobLocation()" placeholder="Enter city name">
+    </div>
     </section>
+    <!-- <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Search By Job Location</span>
+      </div>
+      <input id="searchbar" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" onkeyup="searchByJobLocation()" type="text"
+        name="search"> 
+    </div> -->
 
     <!-- Job Cards Section -->
       <!-- Loop through your job data and generate cards dynamically -->
       <% if (jobs.length > 0){ %>
         <section class="job-cards-section">
-          <div class="container">
+          <div class="container jobLocationDiv">
             <div class="row">
         <% for (let job of jobs) { %>
           <div class="col-12 col-hm-6 col-md-4 col-lg-3 md-4">
@@ -36,9 +43,12 @@
                 <p class="card-text"><%= job.jobDesc %></p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>Location: </strong><%= job.jobLocation %></li>
+                <li class="list-group-item jobLocation"><strong>Location: </strong><%= job.jobLocation %></li>
                 <li class="list-group-item"><strong>Experience: </strong><%= job.Experience %></li>
                 <li class="list-group-item"><strong>Other Info: </strong><%= job.other %></li>
+                <button type="button" onclick="applyJob('<%= job.jobTitle %>')" class="btn btn-primary applyNow" data-bs-toggle="modal" data-bs-target="#myModal">
+                  Apply
+                </button>
               </ul>
             <!-- Add more job details as needed -->
           </div>
@@ -78,6 +88,11 @@
           </div>
           <div class="modal-body">
             <form id="applyForm" method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="jobtitle">Job Profile</label>
+                <input type="input" class="form-control" id="jobtitle" name="jobtitle" placeholder="Job profile" required>
+                <span class="error-message" id="Name-error"></span>
+              </div>
               <div class="form-group">
                 <label for="Name">Full Name</label>
                 <input type="input" class="form-control" id="Name" name="Name" placeholder="Full Name" required>
@@ -230,11 +245,35 @@ console.log("------------------button clicked");
     }
 });
 
-const applyButton = document.getElementById("applyNow");
-applyButton.addEventListener("click", function () { 
-  $('.error-message').text('');
+// const applyButton = $(".applyNow")//document.getElementsByClassName("applyNow");
+// applyButton.addEventListener("click", function () { 
+//   $('.error-message').text('');
+//   document.getElementById("applyForm").reset();
+//   })  
+  
+  function applyJob(jobprofile){
+      console.log("----------job profile",jobprofile)
+    $('.error-message').text('');
   document.getElementById("applyForm").reset();
-  })     
+  $('#jobtitle').val(jobprofile);
+  $('#jobtitle').attr('disabled','disabled');
+  
+  }
+  
+  function searchByJobLocation() { 
+    let input = document.getElementById('search').value 
+    input=input.toLowerCase(); 
+    let x = document.getElementsByClassName('jobLocation'); 
+
+    for (i = 0; i < x.length; i++) {  
+        if (!x[i].innerHTML.toLowerCase().includes(input)) { 
+          x[i].parentElement.parentElement.parentElement.style.display="none"; 
+        } 
+        else { 
+            x[i].parentElement.parentElement.parentElement.style.display="block";                  
+        } 
+    } 
+} 
     </script>
 
     <!-- Include the footer -->

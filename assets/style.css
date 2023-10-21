@@ -60,7 +60,8 @@ body {
     background-position: center;
     height: 300px; /* Adjust the height as needed */
     display: flex;
-    align-items: center;
+    position: relative;
+    align-items: right;
     justify-content: center;
   }
   
@@ -130,4 +131,16 @@ body {
     width: 100%;
     bottom: 0;
   }
-  
+  .search {
+    position: absolute;
+    top: 10px; /* Adjust margin-top as needed */
+    right: 10px; /* Adjust margin-right as needed */
+    background: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background to the search div */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.search label {
+  display: block;
+  margin-bottom: 5px;
+}
