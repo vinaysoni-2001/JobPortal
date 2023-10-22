@@ -16,10 +16,15 @@
 
     <!-- Hero Section -->
     <section class="hero-section firstdiv" style="background-image: url('back.jpg');">
+      <div class="centered-content">
+      <h2>Looking for jobs!!</h2>
+      <p>Choose city.</p>
       <div class="search">
+
         <label for="search">Search:</label>
         <input type="text" id="search" name="search" onkeyup="searchByJobLocation()" placeholder="Enter city name">
     </div>
+  </div>
     </section>
     <!-- <div class="input-group mb-3">
       <div class="input-group-prepend">
@@ -90,35 +95,35 @@
             <form id="applyForm" method="POST" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="jobtitle">Job Profile</label>
-                <input type="input" class="form-control" id="jobtitle" name="jobtitle" placeholder="Job profile" required>
+                <input type="input" class="form-control" id="jobtitle" name="jobtitle"  required>
                 <span class="error-message" id="Name-error"></span>
               </div>
               <div class="form-group">
                 <label for="Name">Full Name</label>
-                <input type="input" class="form-control" id="Name" name="Name" placeholder="Full Name" required>
+                <input type="input" class="form-control" id="Name" name="Name"  required>
                 <span class="error-message" id="Name-error"></span>
               </div>
               <div class="form-group">
                 <label for="Email1">Email address</label>
                 <input type="email" class="form-control" id="Email1" name="Email1" aria-describedby="emailHelp"
-                  placeholder="Enter email" required>
+                   required>
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                   else.</small>
                   <span class="error-message" id="Email1-error"></span>
               </div>
               <div class="form-group">
                 <label for="Phone">Phone</label>
-                <input type="number" class="form-control" id="Phone" name="Phone" placeholder="Phone" required>
+                <input type="number" class="form-control" id="Phone" name="Phone"  required>
                 <span class="error-message" id="Phone-error"></span>
               </div>
               <div class="form-group">
                 <label for="Age">Age</label>
-                <input type="number" class="form-control" id="Age" name="Age" placeholder="Age" required>
+                <input type="number" class="form-control" id="Age" name="Age"  required>
                 <span class="error-message" id="Age-error"></span>
               </div>
               <div class="form-group">
                 <label for="City">City</label>
-                <input type="text" class="form-control" id="City" name="City" placeholder="City" required>
+                <input type="text" class="form-control" id="City" name="City"  required>
                 <span class="error-message" id="City-error"></span>
               </div>
               <div class="form-group" style="margin-top: 15px;">
@@ -202,7 +207,8 @@ console.log("------------------button clicked");
           "age": $("#Age").val(),
           "email": $("#Email1").val(),
           "city": $("#City").val(),
-          "number": $("#Phone").val()
+          "number": $("#Phone").val(),
+          "jobProfile": $("#jobtitle").val()
         };
         console.log("--------data :",data)
 
@@ -213,6 +219,7 @@ console.log("------------------button clicked");
         formData.append('email',data.email);
         formData.append('city',data.city);
         formData.append('number',data.number);
+        formData.append('jobProfile',data.jobProfile);
         for(let i =0;i<files.files.length;i++)
         {
           formData.append('Resume',files.files[0]);

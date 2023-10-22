@@ -62,22 +62,22 @@ body {
     height: 300px; /* Adjust the height as needed */
     display: flex;
     position: relative;
-    align-items: right;
+    align-items: center;
     justify-content: center;
   }
   
-  .hero-section button {
+  /* .hero-section button {
     padding: 10px 20px;
     font-size: 18px;
     background-color: #3498db;
     color: white;
     border: none;
     cursor: pointer;
-  }
+  } */
   
-  .hero-section button:hover {
+  /* .hero-section button:hover {
     background-color: #2980b9;
-  }
+  } */
   
   /* Add styles for your logo */
   .logo {
@@ -133,9 +133,6 @@ body {
     bottom: 0;
   }
   .search {
-    position: absolute;
-    top: 10px; /* Adjust margin-top as needed */
-    right: 10px; /* Adjust margin-right as needed */
     background: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background to the search div */
     padding: 10px;
     border-radius: 5px;
@@ -144,4 +141,11 @@ body {
 .search label {
   display: block;
   margin-bottom: 5px;
+}
+
+.centered-content {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 400px;
 }
