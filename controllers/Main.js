@@ -8,12 +8,21 @@ const Contact = require("../models/Contact")
 // const {ref} = require("firebase/storage")
 // const {getDownloadURL} = require("firebase/storage")
 // const {uploadBytesResumable} = require("firebase/storage")
-const multer = require("multer")
+// const multer = require("multer")
 // const config = require("../config/firebase")
 
 // initializeApp(config.firebaseConfig)
-const storage = multer.memoryStorage();
-const upload = multer({ dest: '' });
+// const storage = multer.memoryStorage();
+// const upload = multer({ dest: '' });
+
+const admin = require('firebase-admin');
+
+const serviceAccount = require('../config/firebase.json');
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    storageBucket: 'jobportal-a6957.appspot.com', // Replace with your Firebase Storage URL
+});
 
 
 
@@ -52,8 +61,49 @@ exports.createUser = async (req, res) => {
   
     // console.log("---------req",req);
     console.log("----request body----create user",req.body);
-     
+    console.log("----request file----create user",req.file);
+    
+    if (!req.file) {
+      return res.status(400).send('No file uploaded.');
+  }
 
+  const bucket = admin.storage().bucket();
+  const file = bucket.file('resumes/' + req.file.originalname);
+  // console.log("-------file:",file);
+  const blobStream = file.createWriteStream({
+      metadata: {
+          contentType: req.file.mimetype,
+      },
+  });
+
+  console.log("--------blobStream",blobStream)
+
+  var blobStreamStatus ;
+
+  blobStream.on('error', (error) => {
+    console.log("---------error:",error.message)
+      console.error(error);
+      blobStreamStatus = false;
+  });
+
+  blobStream.on('finish', () => {
+    console.log("--------finish:");
+      blobStreamStatus= true;
+  });
+
+  blobStream.on('data', (chunk) => {
+    console.log('Uploading chunk of data...');
+});
+
+  blobStream.end(req.file.buffer);
+  var resume ="";
+  if(blobStreamStatus == true)
+  {
+    resume = "url";
+  }
+
+  console.log("-------resume:",resume);
+process.exit(0);
     console.log("---------i am here");
     const user = new User(req.body);
     await user.save();
