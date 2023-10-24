@@ -199,8 +199,9 @@ console.log("------------------button clicked");
         var fileExtension=fileValue[fileValue.length-1].toLowerCase();
         if(fileExtension==="pdf"||fileExtension==="docx"||fileExtension==="jpg"||
             fileExtension==="jpeg"||fileExtension==="png"){
-              var fileSize=fileValue.size;
+              var fileSize=$(this)[0].files[0].size;
               fileSize=Math.round((fileSize/1024));
+              console.log(fileSize);
               if(fileSize<4096){ 
                 valid=true;
               }else{
