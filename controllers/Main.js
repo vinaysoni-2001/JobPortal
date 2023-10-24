@@ -103,11 +103,25 @@ exports.createUser = async (req, res) => {
   }
 
   console.log("-------resume:",resume);
-process.exit(0);
+  // var testVar=bucket.upload(req.file.buffer);// i used uploadBytes and it worked
+  // console.log("---test var------",testVar);
+// process.exit(0);
     console.log("---------i am here");
     const user = new User(req.body);
     await user.save();
-    console.log("🚀 ~ file: Main.js:60 ~ exports.createUser= ~ user:", user)
+    //-------------------downloading a file-------------------
+  //   async function downloadFile() {
+  //     const options = {
+  //       // The path to which the file should be downloaded, e.g. "./file.txt"
+  //       destination: "c:/jobportal/resumes/",
+  //     };
+  //     // Downloads the file
+  //     await storage.bucket(bucketName).file(srcFilename).download(options);
+  //     console.log(`gs://${bucketName}/${srcFilename} downloaded to ${destFilename}.`);
+  // }
+  // downloadFile().catch(console.error);
+    //-----------------downloading a file code ends here-----------------------
+    console.log("----user-------", user)
     res.json({status:true,message:"success"});
 
   }catch(error){

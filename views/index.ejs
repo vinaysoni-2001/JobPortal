@@ -26,13 +26,6 @@
     </div>
   </div>
     </section>
-    <!-- <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default">Search By Job Location</span>
-      </div>
-      <input id="searchbar" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" onkeyup="searchByJobLocation()" type="text"
-        name="search"> 
-    </div> -->
 
     <!-- Job Cards Section -->
       <!-- Loop through your job data and generate cards dynamically -->
@@ -129,6 +122,7 @@
               <div class="form-group" style="margin-top: 15px;">
                 <label for="Resume">Upload Resume here</label>
                 <input type="file" class="form-control-file" name="Resume" id="Resume" required>
+                <small id="fileHelp" class="form-text text-muted">please submit your resume in docx, pdf, jpg and png extensions only.</small>
                 <span class="error-message" id="Resume-error"></span>
               </div>
               <div id="errorApplyForm">
@@ -196,6 +190,26 @@ console.log("------------------button clicked");
         }else{
         $('#' + fieldName + '-error').html('<span style="color:red;font-size:75%;font-style:italic;">Phone must have 10 digits.</span>');
         }
+      }else if($(this).attr('name') === 'Resume'){
+        valid = false;
+        $(this).addClass('error');
+        var fieldName = $(this).attr('name');
+        var fileValue=$(this).val();
+        fileValue=fileValue.split(".");
+        var fileExtension=fileValue[fileValue.length-1].toLowerCase();
+        if(fileExtension==="pdf"||fileExtension==="docx"||fileExtension==="jpg"||
+            fileExtension==="jpeg"||fileExtension==="png"){
+              var fileSize=fileValue.size;
+              fileSize=Math.round((fileSize/1024));
+              if(fileSize<4096){ 
+                valid=true;
+              }else{
+                valid=false;
+                $('#' + fieldName + '-error').html('<span style="color:red;font-size:75%;font-style:italic;">File size should be less than 4mb.</span>');
+              }
+        }else{
+        $('#' + fieldName + '-error').html('<span style="color:red;font-size:75%;font-style:italic;">Allowed File Types are jpg,png,docx,pdf only.</span>');
+        }
       }
     })
     
@@ -251,12 +265,6 @@ console.log("------------------button clicked");
       alert("Please fill in all the required fields.");
     }
 });
-
-// const applyButton = $(".applyNow")//document.getElementsByClassName("applyNow");
-// applyButton.addEventListener("click", function () { 
-//   $('.error-message').text('');
-//   document.getElementById("applyForm").reset();
-//   })  
   
   function applyJob(jobprofile){
       console.log("----------job profile",jobprofile)

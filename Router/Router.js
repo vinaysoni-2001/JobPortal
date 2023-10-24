@@ -10,5 +10,4 @@ router.get("/",home);
 router.post('/contact',createContact);
 router.get('/about-us', about);
 router.get('/contact',contact);
-// router.get('/searchJobs',searchJobs);
 module.exports=router;
