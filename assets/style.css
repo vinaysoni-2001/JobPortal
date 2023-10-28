@@ -161,25 +161,22 @@ body {
 
 
 /* Media query for mobile devices */
-@media screen and (max-width: 488px) {
-  nav {
-      height: auto; /* Allow the height to adjust to content for mobile */
-  }
-  nav ul {
-      flex-direction: row; /* Revert to horizontal layout for larger screens */
-  }
-  nav li {
-      display: block; /* Stack items vertically for mobile */
-      margin: 0; /* Remove the margin for mobile */
-  }
-}
-
-.logo img {
-  width: 150px; /* Set the width you want for desktop */
-}
-
 @media (max-width: 768px) {
-  .logo img {
+  .logo img,.applylogo {
       width: 100px; /* Set the width you want for mobile devices */
   }
+
+  nav ul {
+      text-align: center; /* Center the list items for mobile */
+  }
+
+  nav ul li {
+      display: inline; /* Display list items inline for mobile */
+      margin: 0 10px; /* Add spacing between items for mobile */
+  }
 }
+
+.logo img,.applylogo {
+  width: 200px; /* Set the width you want for desktop */
+}
+

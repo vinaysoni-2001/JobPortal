@@ -90,10 +90,12 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Your Company Name</h5>
+                  <img src="samplelogo.png" class="applylogo" alt="Logo">
+                  <!-- <h5 class="modal-title" id="exampleModalLabel">Your Company Name</h5> -->
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                  <p id="applySuccess" style="display: none; color: #16F72C;">Your Application submitted successfully!!!!</p>
                   <form id="applyForm" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                       <label for="jobtitle">Job Profile</label>
@@ -285,9 +287,17 @@
                   processData: false,
                   data: formData,
                   success: function (response) {
-                    $("#myModal").modal("hide");
-                    document.getElementById("applyForm").reset();
-                    alert("Application Submitted Successfully");
+                    var elem =document.getElementById("applySuccess");
+                    elem.style.display = "block";
+                  
+                    setTimeout(function(){
+                      console.log("------------inside success fuc");
+                      var elem =document.getElementById("applySuccess");
+                      elem.style.display = "none";
+                      $("#myModal").modal("hide");
+                      document.getElementById("applyForm").reset();
+                    }, 5000);
+                    // alert("Application Submitted Successfully");
                   },
                   error: function (error) {
                     alert("Data not saved ,Please try after some time");
