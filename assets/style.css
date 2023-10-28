@@ -31,6 +31,7 @@ body {
     list-style-type: none;
     padding: 0;
     margin: 0; /* Remove default margin */
+    
   }
   
   nav li {
@@ -156,4 +157,29 @@ body {
   padding: 20px;
   border-radius: 5px;
   max-width: 400px;
+}
+
+
+/* Media query for mobile devices */
+@media screen and (max-width: 488px) {
+  nav {
+      height: auto; /* Allow the height to adjust to content for mobile */
+  }
+  nav ul {
+      flex-direction: row; /* Revert to horizontal layout for larger screens */
+  }
+  nav li {
+      display: block; /* Stack items vertically for mobile */
+      margin: 0; /* Remove the margin for mobile */
+  }
+}
+
+.logo img {
+  width: 150px; /* Set the width you want for desktop */
+}
+
+@media (max-width: 768px) {
+  .logo img {
+      width: 100px; /* Set the width you want for mobile devices */
+  }
 }
