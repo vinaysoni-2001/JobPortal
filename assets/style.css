@@ -9,48 +9,12 @@ body {
   }
   
   
-  nav {
-    background-color: white;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between; /* Align items to the left and right */
-    align-items: center; /* Center items vertically */
-    position: fixed;
-    top: 0;
-    height: 90px;
-    width: 100%;
-    z-index: 1;
-
-  }
-
-  nav li:last-child {
-    margin-right: 20px; /* Adjust margin for the last navigation item (Contact Us) */
-  }
-  nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0; /* Remove default margin */
-    
-  }
-  
-  nav li {
-    display: inline;
-    margin-left: 10px;
-  }
-  
-  nav a {
-    color: black;
-    text-decoration: none;
-  }
-
+ 
   nav a:hover {
     text-decoration: underline;
   }
 
-  nav .logo {
-    margin-left: 10px; /* Adjust margin as needed */
-  }
+ 
   .firstdiv{
     margin-top: 90px;
     text-align: center;
@@ -160,23 +124,5 @@ body {
 }
 
 
-/* Media query for mobile devices */
-@media (max-width: 768px) {
-  .logo img,.applylogo {
-      width: 100px; /* Set the width you want for mobile devices */
-  }
 
-  nav ul {
-      text-align: center; /* Center the list items for mobile */
-  }
-
-  nav ul li {
-      display: inline; /* Display list items inline for mobile */
-      margin: 0 10px; /* Add spacing between items for mobile */
-  }
-}
-
-.logo img,.applylogo {
-  width: 200px; /* Set the width you want for desktop */
-}
 
