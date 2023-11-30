@@ -8,10 +8,17 @@
 </body>
 <script>
     $(document).ready(function () {
+
+    
       // Toggle 'show' class on button click
       $('#togglemenu').on('click', function () {
         $('#navbarSupportedContent').toggleClass('show');
       });
+
+      $('.nav-link').on('click', function () {
+        $('#navbarSupportedContent').removeClass('show');
+      });
+      $('#navbarSupportedContent').removeClass('show');
     });
   </script>
 </html>
